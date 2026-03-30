@@ -1,0 +1,42 @@
+# Node modules
+node_modules/
+
+# Test files
+*.cjs
+
+# Data (optional - uncomment if you don't want to commit data)
+# data/contracts_inbox/*.xlsx
+# data/events_master.xlsx
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# local raw docs / symlinks
+data/contracts_raw/
+
+# generated caches
+data/.cache_text/
+dist/
+node_modules/
+
+dist/
+node_modules/

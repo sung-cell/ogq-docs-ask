@@ -1,0 +1,235 @@
+[
+  {
+    "fileName": "README.md",
+    "path": "/Users/ethan/contract-scheduler/README.md",
+    "folderPath": "/Users/ethan/contract-scheduler",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler"
+    ],
+    "ext": ".md",
+    "mtime": "2026-03-17T05:20:43.579Z",
+    "size": 16613,
+    "textPreview": "",
+    "fullText": null,
+    "sourceType": "local"
+  },
+  {
+    "fileName": "sample_2026-03.xlsx",
+    "path": "/Users/ethan/contract-scheduler/data/contracts_inbox/sample_2026-03.xlsx",
+    "folderPath": "/Users/ethan/contract-scheduler/data/contracts_inbox",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler",
+      "data",
+      "contracts_inbox"
+    ],
+    "ext": ".xlsx",
+    "mtime": "2026-03-03T01:07:48.697Z",
+    "size": 7014,
+    "textPreview": "type title client start_date end_date billing_cycle invoice_date due_date amount currency fee_rate notes certain source 계약 클라우드 서비스 계약 ABC Corp 2026-03-01 2027-02-28 연    KRW  1년 계약 true inbox 청구 3월 서비스 이용료 XYZ Inc 2026-03-01  월 2026-04-01 2026-04-15 500000 KRW  월 정액 true inbox 업무 분기 결산 회의 Internal 2026-03-31      KRW  재무팀 참석 true inbox",
+    "fullText": "type title client start_date end_date billing_cycle invoice_date due_date amount currency fee_rate notes certain source 계약 클라우드 서비스 계약 ABC Corp 2026-03-01 2027-02-28 연    KRW  1년 계약 true inbox 청구 3월 서비스 이용료 XYZ Inc 2026-03-01  월 2026-04-01 2026-04-15 500000 KRW  월 정액 true inbox 업무 분기 결산 회의 Internal 2026-03-31      KRW  재무팀 참석 true inbox",
+    "sourceType": "local",
+    "id": "/Users/ethan/contract-scheduler/data/contracts_inbox/sample_2026-03.xlsx_0"
+  },
+  {
+    "fileName": "raw_contract_Q1.xlsx",
+    "path": "/Users/ethan/contract-scheduler/data/contracts_raw/2026/Q1/raw_contract_Q1.xlsx",
+    "folderPath": "/Users/ethan/contract-scheduler/data/contracts_raw/2026/Q1",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler",
+      "data",
+      "contracts_raw",
+      "2026",
+      "Q1"
+    ],
+    "ext": ".xlsx",
+    "mtime": "2026-03-03T03:31:38.700Z",
+    "size": 7014,
+    "textPreview": "type title client start_date end_date billing_cycle invoice_date due_date amount currency fee_rate notes certain source 계약 클라우드 서비스 계약 ABC Corp 2026-03-01 2027-02-28 연    KRW  1년 계약 true inbox 청구 3월 서비스 이용료 XYZ Inc 2026-03-01  월 2026-04-01 2026-04-15 500000 KRW  월 정액 true inbox 업무 분기 결산 회의 Internal 2026-03-31      KRW  재무팀 참석 true inbox",
+    "fullText": "type title client start_date end_date billing_cycle invoice_date due_date amount currency fee_rate notes certain source 계약 클라우드 서비스 계약 ABC Corp 2026-03-01 2027-02-28 연    KRW  1년 계약 true inbox 청구 3월 서비스 이용료 XYZ Inc 2026-03-01  월 2026-04-01 2026-04-15 500000 KRW  월 정액 true inbox 업무 분기 결산 회의 Internal 2026-03-31      KRW  재무팀 참석 true inbox",
+    "sourceType": "local",
+    "id": "/Users/ethan/contract-scheduler/data/contracts_raw/2026/Q1/raw_contract_Q1.xlsx_0"
+  },
+  {
+    "fileName": "events_master.xlsx",
+    "path": "/Users/ethan/contract-scheduler/data/events_master.xlsx",
+    "folderPath": "/Users/ethan/contract-scheduler/data",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler",
+      "data"
+    ],
+    "ext": ".xlsx",
+    "mtime": "2026-03-04T03:08:50.204Z",
+    "size": 8520,
+    "textPreview": "type title client start_date end_date billing_cycle invoice_date due_date amount currency fee_rate notes certain source\n업무 내부 회의 OGQ 2026-02-26 KRW 회의 TRUE manual",
+    "fullText": "type title client start_date end_date billing_cycle invoice_date due_date amount currency fee_rate notes certain source\n업무 내부 회의 OGQ 2026-02-26 KRW 회의 TRUE manual",
+    "sourceType": "local",
+    "id": "/Users/ethan/contract-scheduler/data/events_master.xlsx_0"
+  },
+  {
+    "fileName": "events_master.xlsx",
+    "path": "/Users/ethan/contract-scheduler/data/events_master.xlsx",
+    "folderPath": "/Users/ethan/contract-scheduler/data",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler",
+      "data"
+    ],
+    "ext": ".xlsx",
+    "mtime": "2026-03-04T03:08:50.204Z",
+    "size": 8520,
+    "textPreview": "청구 2월 PG 정산 PG사 2026-02-01 2026-02-28 월 2026-03-10 2026-03-20 1000000 KRW 0.035 수수료 차감 TRUE manual\n계약 테스트 계약 TEST 1/1/26 6/25/26     KRW   TRUE manual\n계약 클라우드 서비스 계약 ABC Corp 3/1/26 2/28/27 연    KRW  1년 계약 TRUE inbox\n청구 3월 서비스 이용료 XYZ Inc 3/1/26  월 4/1/26 4/15/26 500000 KRW  월 정액 TRUE inbox\n업무 분기 결산 회의 Internal 3/31/26      KRW  재무팀 참석 TRUE inbox\ntype title client start_date end_date billing_cycle invoice_date due_date amount currency fee_rate notes certain source _source_file _sheet _added_at",
+    "fullText": "청구 2월 PG 정산 PG사 2026-02-01 2026-02-28 월 2026-03-10 2026-03-20 1000000 KRW 0.035 수수료 차감 TRUE manual\n계약 테스트 계약 TEST 1/1/26 6/25/26     KRW   TRUE manual\n계약 클라우드 서비스 계약 ABC Corp 3/1/26 2/28/27 연    KRW  1년 계약 TRUE inbox\n청구 3월 서비스 이용료 XYZ Inc 3/1/26  월 4/1/26 4/15/26 500000 KRW  월 정액 TRUE inbox\n업무 분기 결산 회의 Internal 3/31/26      KRW  재무팀 참석 TRUE inbox\ntype title client start_date end_date billing_cycle invoice_date due_date amount currency fee_rate notes certain source _source_file _sheet _added_at",
+    "sourceType": "local",
+    "id": "/Users/ethan/contract-scheduler/data/events_master.xlsx_1"
+  },
+  {
+    "fileName": "events_master.xlsx",
+    "path": "/Users/ethan/contract-scheduler/data/events_master.xlsx",
+    "folderPath": "/Users/ethan/contract-scheduler/data",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler",
+      "data"
+    ],
+    "ext": ".xlsx",
+    "mtime": "2026-03-04T03:08:50.204Z",
+    "size": 8520,
+    "textPreview": "계약 클라우드 서비스 계약 ABC Corp 3/1/26 2/28/27 연    KRW  1년 계약 TRUE inbox sample_2026-03.xlsx 2026년 3월 계약 3/3/26",
+    "fullText": "계약 클라우드 서비스 계약 ABC Corp 3/1/26 2/28/27 연    KRW  1년 계약 TRUE inbox sample_2026-03.xlsx 2026년 3월 계약 3/3/26",
+    "sourceType": "local",
+    "id": "/Users/ethan/contract-scheduler/data/events_master.xlsx_2"
+  },
+  {
+    "fileName": "events_master.xlsx",
+    "path": "/Users/ethan/contract-scheduler/data/events_master.xlsx",
+    "folderPath": "/Users/ethan/contract-scheduler/data",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler",
+      "data"
+    ],
+    "ext": ".xlsx",
+    "mtime": "2026-03-04T03:08:50.204Z",
+    "size": 8520,
+    "textPreview": "청구 3월 서비스 이용료 XYZ Inc 3/1/26  월 4/1/26 4/15/26 500000 KRW  월 정액 TRUE inbox sample_2026-03.xlsx 2026년 3월 계약 3/3/26",
+    "fullText": "청구 3월 서비스 이용료 XYZ Inc 3/1/26  월 4/1/26 4/15/26 500000 KRW  월 정액 TRUE inbox sample_2026-03.xlsx 2026년 3월 계약 3/3/26",
+    "sourceType": "local",
+    "id": "/Users/ethan/contract-scheduler/data/events_master.xlsx_3"
+  },
+  {
+    "fileName": "events_master.xlsx",
+    "path": "/Users/ethan/contract-scheduler/data/events_master.xlsx",
+    "folderPath": "/Users/ethan/contract-scheduler/data",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler",
+      "data"
+    ],
+    "ext": ".xlsx",
+    "mtime": "2026-03-04T03:08:50.204Z",
+    "size": 8520,
+    "textPreview": "업무 분기 결산 회의 Internal 3/31/26      KRW  재무팀 참석 TRUE inbox sample_2026-03.xlsx 2026년 3월 계약 3/3/26",
+    "fullText": "업무 분기 결산 회의 Internal 3/31/26      KRW  재무팀 참석 TRUE inbox sample_2026-03.xlsx 2026년 3월 계약 3/3/26",
+    "sourceType": "local",
+    "id": "/Users/ethan/contract-scheduler/data/events_master.xlsx_4"
+  },
+  {
+    "fileName": "auto-index-summary.md",
+    "path": "/Users/ethan/contract-scheduler/docs/auto-index-summary.md",
+    "folderPath": "/Users/ethan/contract-scheduler/docs",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler",
+      "docs"
+    ],
+    "ext": ".md",
+    "mtime": "2026-03-18T03:11:26.330Z",
+    "size": 7723,
+    "textPreview": "",
+    "fullText": null,
+    "sourceType": "local"
+  },
+  {
+    "fileName": "examples.md",
+    "path": "/Users/ethan/contract-scheduler/prompts/examples.md",
+    "folderPath": "/Users/ethan/contract-scheduler/prompts",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler",
+      "prompts"
+    ],
+    "ext": ".md",
+    "mtime": "2026-02-26T08:18:02.356Z",
+    "size": 1340,
+    "textPreview": "",
+    "fullText": null,
+    "sourceType": "local"
+  },
+  {
+    "fileName": "system.md",
+    "path": "/Users/ethan/contract-scheduler/prompts/system.md",
+    "folderPath": "/Users/ethan/contract-scheduler/prompts",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler",
+      "prompts"
+    ],
+    "ext": ".md",
+    "mtime": "2026-02-26T08:18:02.356Z",
+    "size": 629,
+    "textPreview": "",
+    "fullText": null,
+    "sourceType": "local"
+  },
+  {
+    "fileName": "list_view.md",
+    "path": "/Users/ethan/contract-scheduler/prompts/templates/list_view.md",
+    "folderPath": "/Users/ethan/contract-scheduler/prompts/templates",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler",
+      "prompts",
+      "templates"
+    ],
+    "ext": ".md",
+    "mtime": "2026-02-26T08:18:02.356Z",
+    "size": 360,
+    "textPreview": "",
+    "fullText": null,
+    "sourceType": "local"
+  },
+  {
+    "fileName": "query.md",
+    "path": "/Users/ethan/contract-scheduler/prompts/templates/query.md",
+    "folderPath": "/Users/ethan/contract-scheduler/prompts/templates",
+    "folderNames": [
+      "Users",
+      "ethan",
+      "contract-scheduler",
+      "prompts",
+      "templates"
+    ],
+    "ext": ".md",
+    "mtime": "2026-02-26T08:18:02.365Z",
+    "size": 309,
+    "textPreview": "",
+    "fullText": null,
+    "sourceType": "local"
+  }
+]

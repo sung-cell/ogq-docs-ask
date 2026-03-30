@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node index.js list)",
+      "Bash(node add-contract-test.cjs:*)",
+      "Bash(node:*)"
+    ]
+  }
+}

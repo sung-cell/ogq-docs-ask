@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "startupDelayMinutes": 3,
+  "checkIntervalMinutes": 60,
+  "reindexIfOlderThanHours": 6,
+  "skipWhenOnBattery": true,
+  "skipWhenQuestionRunning": true
+}

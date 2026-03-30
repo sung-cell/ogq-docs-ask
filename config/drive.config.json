@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "mode": "desktop+api",
+  "desktopRoots": [
+    "/Users/ethan/Library/CloudStorage/GoogleDrive-sung@ogqcorp.com/내 드라이브"
+  ],
+  "api": {
+    "enabled": true,
+    "credentialsPath": "~/.contract-scheduler/google-drive-oauth.json",
+    "tokenPath": "~/.contract-scheduler/google-drive-token.json",
+    "includeMyDrive": true,
+    "includeSharedDrives": false,
+    "includeNativeGoogleDocs": true
+  }
+}
