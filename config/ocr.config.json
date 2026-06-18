@@ -1,0 +1,11 @@
+{
+  "enabled": false,
+  "languages": ["kor", "eng"],
+  "maxPages": 3,
+  "fullDocumentFallback": false,
+  "minTextLength": 50,
+  "tesseractOptions": {
+    "logger": null
+  },
+  "note": "OCR is currently disabled. To enable, set 'enabled' to true and ensure pdfjs-dist is properly configured for Node.js environment."
+}

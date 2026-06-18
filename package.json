@@ -1,0 +1,94 @@
+{
+  "name": "ogq-docs-ask",
+  "version": "1.0.0",
+  "description": "OGQ 문서 검색 및 요약 도구",
+  "author": "OGQ",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "list": "node index.js list",
+    "remind": "node index.js remind",
+    "query": "node index.js query",
+    "app": "electron electron/main.js",
+    "watch-index": "node index.js watch-index",
+    "reindex": "node index.js reindex",
+    "build": "electron-builder --mac",
+    "build:dir": "electron-builder --mac --dir",
+    "pack": "electron-builder --mac --dir"
+  },
+  "build": {
+    "appId": "com.ogq.docsask",
+    "productName": "OGQ Docs Ask",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "assets/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "config/**/*",
+      "index.js",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "index.js",
+        "to": "cli/index.js"
+      },
+      {
+        "from": "src",
+        "to": "cli/src"
+      },
+      {
+        "from": "config",
+        "to": "cli/config"
+      },
+      {
+        "from": "cli-package.json",
+        "to": "cli/package.json"
+      },
+      {
+        "from": "node_modules",
+        "to": "cli/node_modules"
+      }
+    ],
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.8.0",
+    "canvas": "^3.2.1",
+    "chokidar": "^3.6.0",
+    "dayjs": "^1.11.13",
+    "exceljs": "^4.4.0",
+    "googleapis": "^171.4.0",
+    "jszip": "^3.10.1",
+    "mammoth": "^1.11.0",
+    "openai": "^6.34.0",
+    "pdf-parse": "^1.1.1",
+    "pdf-poppler": "^0.2.3",
+    "pdfjs-dist": "^5.5.207",
+    "tesseract.js": "^7.0.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^26.8.1"
+  }
+}

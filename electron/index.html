@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OGQ Docs Ask</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 헤더 -->
+    <header class="app-header">
+      <div class="header-content">
+        <div>
+          <h1>📋 OGQ Docs Ask</h1>
+          <p class="subtitle">OGQ 문서 검색 및 요약 도구</p>
+        </div>
+        <div class="header-right">
+          <div id="indexStatus" class="index-status">
+            <span class="status-loading">인덱스 확인 중...</span>
+          </div>
+          <button id="settingsButton" class="settings-button" title="설정">
+            ⚙️ 설정
+          </button>
+        </div>
+      </div>
+      <!-- 스프레드시트 버튼 영역 -->
+      <div class="spreadsheet-buttons">
+        <button id="openSpreadsheetButton" class="spreadsheet-btn">
+          📊 스프레드시트 열기
+        </button>
+        <button id="openWorkProgressButton" class="spreadsheet-btn">
+          📝 업무진행 시트 열기
+        </button>
+        <button id="openMeetingMinutesButton" class="spreadsheet-btn">
+          📋 회의록 시트 열기
+        </button>
+      </div>
+    </header>
+
+    <!-- Google Drive 연결 온보딩 배너 -->
+    <div id="driveOnboardingBanner" class="drive-onboarding-banner" style="display: none;">
+      <div class="drive-onboarding-content">
+        <div class="drive-onboarding-icon">☁️</div>
+        <div class="drive-onboarding-text">
+          <strong>Google Drive 문서를 함께 검색하시겠어요?</strong>
+          <p>최초 1회 연결로 Drive 문서도 검색할 수 있습니다.</p>
+        </div>
+        <div class="drive-onboarding-actions">
+          <button id="driveOnboardingConnectButton" class="drive-onboarding-button primary">
+            연결하기
+          </button>
+          <button id="driveOnboardingLaterButton" class="drive-onboarding-button secondary">
+            나중에
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 질문 입력 영역 -->
+    <div class="question-area">
+      <div class="input-group">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="questionInput"
+            class="question-input"
+            placeholder="질문을 입력하세요 (예: KT 계약 종료 언제야?)"
+            autocomplete="off"
+          />
+          <button id="clearInputButton" class="clear-input-button" title="입력 내용 지우기" style="display: none;">
+            ✕
+          </button>
+        </div>
+        <button id="askButton" class="ask-button">
+          <span id="buttonText">질문하기</span>
+          <span id="buttonSpinner" class="spinner" style="display: none;">⏳</span>
+        </button>
+        <button id="resetButton" class="reset-button" title="전체 초기화">
+          🔄 초기화
+        </button>
+      </div>
+
+      <!-- 예시 질문 버튼 -->
+      <div id="exampleQuestions" class="example-questions">
+        <p class="example-label">예시 질문:</p>
+        <div class="example-buttons">
+          <button class="example-btn" data-question="KT 계약 종료 언제야?">
+            KT 계약 종료 언제야?
+          </button>
+          <button class="example-btn" data-question="이번달 청구 총액 얼마야?">
+            이번달 청구 총액 얼마야?
+          </button>
+          <button class="example-btn" data-question="SKT 계약서 어디 있어?">
+            SKT 계약서 어디 있어?
+          </button>
+          <button class="example-btn" data-question="채팅+마켓 운영비용 견적서에서 SKT 관련 내용 뭐야?">
+            채팅+마켓 운영비용 견적서에서 SKT 관련 내용 뭐야?
+          </button>
+          <button class="example-btn" data-question="비즈챗 단가 얼마야?">
+            비즈챗 단가 얼마야?
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 회의 기록 영역 -->
+    <div id="meetingLogArea" class="meeting-log-area" style="display: none;">
+      <h2>📝 회의 기록 작성</h2>
+
+      <!-- 파일 선택 섹션 -->
+      <div class="meeting-section">
+        <h3>1. 전사 파일 선택</h3>
+        <button id="loadMeetingFilesButton" class="action-button">📂 ~/meeting_logs 폴더 불러오기</button>
+        <div id="meetingFilesList" class="meeting-files-list"></div>
+      </div>
+
+      <!-- 미리보기 섹션 -->
+      <div id="filePreviewSection" class="meeting-section" style="display: none;">
+        <h3>2. 파일 미리보기</h3>
+        <div id="filePreview" class="file-preview"></div>
+      </div>
+
+      <!-- 타입 선택 섹션 -->
+      <div id="recordTypeSection" class="meeting-section" style="display: none;">
+        <h3>3. 기록 타입 선택</h3>
+        <div class="record-type-selection">
+          <label class="radio-label">
+            <input type="radio" name="recordType" value="workProgress" checked>
+            <span>📝 업무진행</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="recordType" value="meetingMinutes">
+            <span>📋 회의록</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 입력 폼 섹션 -->
+      <div id="inputFormSection" class="meeting-section" style="display: none;">
+        <h3>4. 정보 입력</h3>
+
+        <!-- 업무진행 폼 -->
+        <div id="workProgressForm" class="input-form">
+          <div class="form-field">
+            <label>회의일시</label>
+            <input type="datetime-local" id="wpDateTime" class="form-input">
+          </div>
+          <div class="form-field">
+            <label>프로젝트명</label>
+            <input type="text" id="wpProjectName" class="form-input" placeholder="프로젝트명을 입력하세요">
+          </div>
+          <div class="form-field">
+            <label>담당자</label>
+            <input type="text" id="wpAssignee" class="form-input" placeholder="담당자 이름을 입력하세요">
+          </div>
+          <div class="form-field">
+            <label>진행사항</label>
+            <textarea id="wpProgress" class="form-textarea" rows="4" placeholder="진행사항을 입력하세요"></textarea>
+          </div>
+          <div class="form-field">
+            <label>예정사항</label>
+            <textarea id="wpPlanned" class="form-textarea" rows="4" placeholder="예정사항을 입력하세요"></textarea>
+          </div>
+        </div>
+
+        <!-- 회의록 폼 -->
+        <div id="meetingMinutesForm" class="input-form" style="display: none;">
+          <div class="form-field">
+            <label>회의일시</label>
+            <input type="datetime-local" id="mmDateTime" class="form-input">
+          </div>
+          <div class="form-field">
+            <label>핵심논의</label>
+            <textarea id="mmKeyDiscussion" class="form-textarea" rows="4" placeholder="핵심논의 내용을 입력하세요"></textarea>
+          </div>
+          <div class="form-field">
+            <label>결정사항</label>
+            <textarea id="mmDecisions" class="form-textarea" rows="4" placeholder="결정사항을 입력하세요"></textarea>
+          </div>
+          <div class="form-field">
+            <label>해야할일</label>
+            <textarea id="mmTodos" class="form-textarea" rows="4" placeholder="해야할일을 입력하세요"></textarea>
+          </div>
+        </div>
+
+        <button id="saveMeetingLogButton" class="action-button primary">💾 저장 (구글 드라이브 업로드 + 스프레드시트 기록)</button>
+        <div id="saveMessage" class="save-message" style="display: none;"></div>
+      </div>
+    </div>
+
+    <!-- 초기 설정 영역 (인덱스가 없을 때만 표시) -->
+    <div id="initialSetup" class="initial-setup" style="display: none;">
+      <div class="setup-card">
+        <h2>⚙️ 초기 설정</h2>
+        <p class="setup-description">처음 사용하는 환경에서는 문서 폴더를 한 번만 지정하면 됩니다.</p>
+
+        <div class="setup-field">
+          <label>📁 문서 폴더</label>
+          <div id="initialFoldersList" class="folder-list">
+            <!-- 동적으로 추가됨 -->
+          </div>
+          <button id="initialAddFolderButton" class="action-button secondary">
+            ➕ 폴더 추가
+          </button>
+        </div>
+
+        <div class="setup-field">
+          <label class="checkbox-label">
+            <input type="checkbox" id="watchDownloadsCheckbox" checked />
+            <span>💾 다운로드 폴더 자동 감시</span>
+          </label>
+        </div>
+
+        <div class="setup-field">
+          <label class="checkbox-label">
+            <input type="checkbox" id="watchGoogleDriveCheckbox" checked />
+            <span>☁️ Google Drive 폴더 자동 감시</span>
+          </label>
+        </div>
+
+        <div class="setup-actions">
+          <button id="saveSetupButton" class="save-setup-button" disabled>
+            💾 설정 저장
+          </button>
+          <button id="saveAndIndexButton" class="save-and-index-button" disabled>
+            📚 저장 후 인덱스 생성
+          </button>
+        </div>
+
+        <div id="setupMessage" class="setup-message" style="display: none;"></div>
+      </div>
+    </div>
+
+    <!-- 결과 영역 -->
+    <div class="result-area">
+      <div id="resultContent" class="result-content">
+        <div class="welcome-message">
+          <h2>👋 환영합니다!</h2>
+          <p>위에서 질문을 선택하거나 직접 입력하여 시작하세요.</p>
+          <div class="features">
+            <div class="feature-item">
+              <div class="feature-icon">🔍</div>
+              <div class="feature-text">문서 검색</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">📅</div>
+              <div class="feature-text">일정 조회</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">💰</div>
+              <div class="feature-text">금액 분석</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">📄</div>
+              <div class="feature-text">내용 질문</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 자동 인덱싱 상태바 -->
+  <div id="auto-index-status-bar" style="display: none; position: fixed; bottom: 20px; right: 20px; background: rgba(0, 0, 0, 0.8); color: white; padding: 10px 15px; border-radius: 8px; font-size: 12px; z-index: 10000;">
+    <span id="auto-index-status-text">자동 인덱싱 대기 중...</span>
+  </div>
+
+  <!-- Google Drive 인증 코드 입력 모달 -->
+  <div id="driveAuthModal" class="drive-auth-modal" style="display: none;">
+    <div class="drive-auth-modal-overlay"></div>
+    <div class="drive-auth-modal-content">
+      <div class="drive-auth-header">
+        <h2>☁️ Google Drive 연결</h2>
+        <button id="closeDriveAuthButton" class="close-drive-auth-button">✕</button>
+      </div>
+
+      <div class="drive-auth-body">
+        <div class="drive-auth-intro">
+          <p class="auth-intro-text">
+            Google 계정으로 로그인하면 자동으로 Drive가 연결됩니다.
+          </p>
+        </div>
+
+        <div class="drive-auth-steps">
+          <div class="drive-auth-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Google 로그인</h3>
+              <p>아래 버튼을 클릭하여 Google 로그인 페이지로 이동합니다.</p>
+              <button id="openGoogleAuthButton" class="auth-step-button">
+                🔗 Google 로그인 페이지 열기
+              </button>
+            </div>
+          </div>
+
+          <div class="drive-auth-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>인증 코드 확인</h3>
+              <p>Google 로그인을 완료하면 브라우저에 인증 코드가 표시됩니다. 코드를 복사하세요.</p>
+            </div>
+          </div>
+
+          <div class="drive-auth-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>인증 코드 입력</h3>
+              <input
+                type="text"
+                id="authCodeInput"
+                class="auth-code-input"
+                placeholder="인증 코드를 입력하세요"
+              />
+              <button id="submitAuthCodeButton" class="auth-step-button primary">
+                ✅ 연결하기
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="driveAuthMessage" class="drive-auth-message" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 설정 모달 -->
+  <div id="settingsModal" class="settings-modal" style="display: none;">
+    <div class="settings-modal-overlay"></div>
+    <div class="settings-modal-content">
+      <div class="settings-header">
+        <h2>⚙️ 설정</h2>
+        <button id="closeSettingsButton" class="close-settings-button">✕</button>
+      </div>
+
+      <div class="settings-body">
+        <!-- 인덱스 정보 -->
+        <div class="settings-section">
+          <h3>📊 인덱스 정보</h3>
+          <div class="index-info-grid">
+            <div class="info-item">
+              <span class="info-label">문서 수:</span>
+              <span id="settingsDocCount" class="info-value">-</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">마지막 인덱싱:</span>
+              <span id="settingsLastIndexed" class="info-value">-</span>
+            </div>
+          </div>
+          <button id="reindexButton" class="action-button secondary">
+            🔄 인덱스 재생성
+          </button>
+        </div>
+
+        <!-- 문서 폴더 설정 -->
+        <div class="settings-section">
+          <h3>📁 문서 폴더</h3>
+          <div id="documentFoldersList" class="folder-list">
+            <!-- 동적으로 추가됨 -->
+          </div>
+          <button id="addFolderButton" class="action-button secondary">
+            ➕ 폴더 추가
+          </button>
+        </div>
+
+        <!-- Google Drive 연결 -->
+        <div class="settings-section">
+          <h3>☁️ Google Drive 연결</h3>
+          <div class="drive-connection-status">
+            <div class="status-row">
+              <span class="status-label">연결 상태:</span>
+              <span id="driveConnectionStatus" class="status-value">확인 중...</span>
+            </div>
+          </div>
+          <div id="driveNotConnectedSection" class="drive-section" style="display: none;">
+            <p class="drive-help-text">
+              Google Drive 문서를 검색하려면 최초 1회 연결이 필요합니다.
+            </p>
+            <button id="connectDriveButton" class="action-button primary">
+              ☁️ Google Drive 연결하기
+            </button>
+          </div>
+          <div id="driveConnectedSection" class="drive-section" style="display: none;">
+            <p class="drive-help-text success">
+              ✅ Google Drive가 연결되었습니다.
+            </p>
+            <button id="reconnectDriveButton" class="action-button secondary">
+              🔄 다시 연결하기
+            </button>
+          </div>
+        </div>
+
+        <!-- 감시 옵션 -->
+        <div class="settings-section">
+          <h3>👁️ 자동 감시</h3>
+          <label class="checkbox-label">
+            <input type="checkbox" id="settingsWatchDownloads" />
+            <span>💾 Downloads 폴더 자동 감시</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="settingsWatchGoogleDrive" />
+            <span>☁️ Google Drive 폴더 자동 감시</span>
+          </label>
+          <p class="settings-help-text">
+            * Google Drive 자동 감시는 Drive가 연결된 경우에만 동작합니다.
+          </p>
+        </div>
+
+        <!-- 저장 버튼 -->
+        <div class="settings-actions">
+          <button id="saveSettingsButton" class="action-button primary">
+            💾 저장
+          </button>
+          <button id="saveAndReindexButton" class="action-button primary">
+            📚 저장 후 인덱스 재생성
+          </button>
+        </div>
+
+        <div id="settingsMessage" class="settings-message" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

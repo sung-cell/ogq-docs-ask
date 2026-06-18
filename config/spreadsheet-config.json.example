@@ -1,0 +1,5 @@
+{
+  "spreadsheetId": "YOUR_SPREADSHEET_ID_HERE",
+  "workProgressSheetName": "업무진행",
+  "meetingMinutesSheetName": "회의록"
+}
